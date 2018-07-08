@@ -16,15 +16,4 @@ public enum ZebraFont {
 	public String getLetter() {
 		return letter;
 	}
-
-	/**
-	 * Fonction use for preview to find an equivalent font compatible with Graphic2D
-	 * 
-	 * @param zebraFont
-	 * @return
-	 */
-	public static String findBestEquivalentFontForPreview(ZebraFont zebraFont) {
-		return "Arial";
-	}
-
 }

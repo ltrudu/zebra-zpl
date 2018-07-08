@@ -1,11 +1,5 @@
 package fr.w3blog.zpl.model;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -187,33 +181,5 @@ public class ZebraLabel {
 		}
 		zpl.append(ZplUtils.zplCommandSautLigne("XZ"));//End Label
 		return zpl.toString();
-	}
-
-	/**
-	 * Function use to have a preview of label rendering (not reflects reality).
-	 * 
-	 * Use it just to see disposition on label
-	 * 
-	 * @return Graphics2D
-	 */
-	public BufferedImage getImagePreview() {
-		if (widthDots != null && heightDots != null) {
-			int widthPx = ZplUtils.convertPointInPixel(widthDots);
-			int heightPx = ZplUtils.convertPointInPixel(heightDots);
-			BufferedImage image = new BufferedImage(widthPx, heightPx, BufferedImage.TYPE_INT_ARGB);
-			Graphics2D graphic = image.createGraphics();
-			graphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-			graphic.setComposite(AlphaComposite.Src);
-			graphic.fillRect(0, 0, widthPx, heightPx);
-
-			graphic.setColor(Color.BLACK);
-			graphic.setFont(new Font("Arial", Font.BOLD, 11));
-			for (ZebraElement zebraElement : zebraElements) {
-				zebraElement.drawPreviewGraphic(printerOptions, graphic);
-			}
-			return image;
-		} else {
-			throw new UnsupportedOperationException("Graphics Preview is only available ont label sized");
-		}
 	}
 }

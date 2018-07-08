@@ -1,9 +1,5 @@
 package fr.w3blog.zpl.model.element;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-
 import fr.w3blog.zpl.constant.ZebraRotation;
 import fr.w3blog.zpl.model.PrinterOptions;
 import fr.w3blog.zpl.model.ZebraElement;
@@ -151,32 +147,6 @@ public abstract class ZebraBarCode extends ZebraElement {
 			zpl.append(ZplUtils.zplCommandSautLigne("BY", moduleWidth, wideBarRatio, barCodeHeigth));
 		}
 		return zpl;
-	}
-
-	/**
-	 * Used to draw label preview.
-	 * This method should be overloader by child class.
-	 * 
-	 * Default draw a rectangle
-	 * 
-	 * @param graphic
-	 */
-	public void drawPreviewGraphic(PrinterOptions printerOptions, Graphics2D graphic) {
-		int top = 0;
-		int left = 0;
-		if (positionX != null) {
-			left = ZplUtils.convertPointInPixel(positionX);
-		}
-		if (positionY != null) {
-			top = ZplUtils.convertPointInPixel(positionY);
-		}
-		graphic.setColor(Color.BLACK);
-
-		Font font = new Font("Arial", Font.BOLD, barCodeHeigth / 2);
-
-		graphic.drawRect(left, top, ZplUtils.convertPointInPixel(Math.round(moduleWidth * wideBarRatio * 9 * text.length())), ZplUtils.convertPointInPixel(barCodeHeigth));
-
-		drawTopString(graphic, font, text, left, top);
 	}
 
 	public Integer getBarCodeWidth() {
